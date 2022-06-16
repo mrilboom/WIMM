@@ -23,7 +23,7 @@ CREATE TABLE `bill_alipay`  (
   `io_flag` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收/支',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`business_id`) USING BTREE,
-  INDEX `INDEX_ALIPAY`(`oppon_name`, `business_id`, `order_id`) USING BTREE
+  INDEX `INDEX_ALIPAY`(`oppon_name`, `business_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '支付宝账单数据表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
