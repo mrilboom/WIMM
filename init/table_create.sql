@@ -27,3 +27,28 @@ CREATE TABLE `bill_alipay`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '支付宝账单数据表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- 微信建表语句
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+-- ----------------------------
+-- Table structure for bill_wechatpay
+-- ----------------------------
+DROP TABLE IF EXISTS `bill_wechatpay`;
+CREATE TABLE `bill_wechatpay`  (
+  `busi_create_time` datetime NOT NULL COMMENT '交易创建时间',
+	`business_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '交易类型',
+	`oppon_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '交易对方',
+	`goods_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品',
+	`io_flag` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收/支',
+	`business_amount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '金额（元）',
+	`pay_method` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式',
+	`current_state` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '当前状态',
+  `business_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '交易单号',
+  `order_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商家单号',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`business_id`) USING BTREE,
+  INDEX `INDEX_ALIPAY`(`oppon_name`, `business_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信支付账单数据表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
